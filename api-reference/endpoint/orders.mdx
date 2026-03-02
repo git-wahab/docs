@@ -5,9 +5,9 @@ description: 'Order management endpoints'
 
 ## List Orders
 
-<OpenAPI method="get" path="/orders">
-  Returns a paginated list of orders for the authenticated user with optional filtering
-</OpenAPI>
+`GET /api/v1/orders`
+
+Returns a paginated list of orders for the authenticated user with optional filtering
 
 ### Query Parameters
 
@@ -27,9 +27,9 @@ description: 'Order management endpoints'
 
 ## Create Direct Purchase Order
 
-<OpenAPI method="post" path="/orders">
-  Creates an order directly without going through the cart flow
-</OpenAPI>
+`POST /api/v1/orders`
+
+Creates an order directly without going through the cart flow
 
 ### Request Body
 
@@ -94,9 +94,9 @@ The request should include:
 
 ## Get Order Details
 
-<OpenAPI method="get" path="/orders/{order}">
-  Returns detailed information about a specific order
-</OpenAPI>
+`GET /api/v1/orders/{order}`
+
+Returns detailed information about a specific order
 
 ### Path Parameters
 
@@ -113,9 +113,9 @@ The request should include:
 
 ## Download Order Digital Codes
 
-<OpenAPI method="get" path="/orders/{order}/download-codes">
-  Downloads a ZIP file containing digital codes for the order
-</OpenAPI>
+`GET /api/v1/orders/{order}/download-codes`
+
+Downloads a ZIP file containing digital codes for the order
 
 ### Path Parameters
 
@@ -132,9 +132,9 @@ The request should include:
 
 ## Get Order Digital Codes (JSON)
 
-<OpenAPI method="get" path="/orders/{order}/get-codes">
-  Returns digital codes for the order in JSON format
-</OpenAPI>
+`GET /api/v1/orders/{order}/get-codes`
+
+Returns digital codes for the order in JSON format
 
 ### Path Parameters
 
@@ -166,9 +166,9 @@ The request should include:
 
 ## Download Order Invoice
 
-<OpenAPI method="get" path="/orders/{order}/download-invoice">
-  Downloads a PDF invoice for the order
-</OpenAPI>
+`GET /api/v1/orders/{order}/download-invoice`
+
+Downloads a PDF invoice for the order
 
 ### Path Parameters
 

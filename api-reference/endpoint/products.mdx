@@ -5,9 +5,9 @@ description: 'Product management endpoints'
 
 ## List Products
 
-<OpenAPI method="get" path="/products">
-  Returns a paginated list of products with optional filtering
-</OpenAPI>
+`GET /api/v1/products`
+
+Returns a paginated list of products with optional filtering
 
 ### Query Parameters
 
@@ -24,9 +24,9 @@ description: 'Product management endpoints'
 
 ## Search Products
 
-<OpenAPI method="get" path="/products/search">
-  Search products by term and return paginated results
-</OpenAPI>
+`GET /api/v1/products/search`
+
+Search products by term and return paginated results
 
 ### Query Parameters
 
@@ -42,9 +42,9 @@ description: 'Product management endpoints'
 
 ## Get Product Details
 
-<OpenAPI method="get" path="/products/{product}">
-  Returns details for a single product
-</OpenAPI>
+`GET /api/v1/products/{product}`
+
+Returns details for a single product
 
 ### Path Parameters
 
