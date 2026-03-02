@@ -20,12 +20,21 @@
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Orders",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoint/orders"
+            ]
+          },
+          {
+            "group": "Products",
+            "pages": [
+              "api-reference/endpoint/products"
+            ]
+          },
+          {
+            "group": "Wallets",
+            "pages": [
+              "api-reference/endpoint/wallets"
             ]
           }
         ]
