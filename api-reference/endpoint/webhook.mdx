@@ -1,4 +1,119 @@
 ---
-title: 'New Plant'
-openapi: 'WEBHOOK /plant/webhook'
+title: 'Webhooks'
+description: 'Real-time event notifications for your application'
 ---
+
+## Webhooks Overview
+
+Webhooks allow your application to receive real-time notifications about important events occurring in Manastore. Instead of polling the API, webhooks push event data directly to your application's endpoint.
+
+## Webhook Events
+
+### Order Events
+
+- **order.created**: A new order has been created
+- **order.completed**: An order has been fulfilled and completed
+- **order.refunded**: An order has been refunded
+- **order.cancelled**: An order has been cancelled
+
+### Payment Events
+
+- **payment.completed**: Payment has been successfully processed
+- **payment.failed**: Payment processing failed
+- **payment.pending**: Payment is pending processing
+
+### Product Events
+
+- **product.created**: A new product has been added
+- **product.updated**: A product has been updated
+- **product.deleted**: A product has been deleted
+
+## Registering a Webhook
+
+To register a webhook:
+
+1. Provide a public HTTPS URL endpoint
+2. Subscribe to the events you want to receive
+3. Manastore will immediately begin sending events to your endpoint
+
+## Webhook Payload Format
+
+All webhook events follow this standard format:
+
+```json
+{
+  "id": "webhook-event-id",
+  "event": "order.completed",
+  "timestamp": "2023-01-01T12:00:00+00:00",
+  "data": {
+    // Event-specific data
+  }
+}
+```
+
+## Example Payloads
+
+### Order Completed Event
+
+```json
+{
+  "id": "evt_1234567890",
+  "event": "order.completed",
+  "timestamp": "2023-01-01T12:00:00+00:00",
+  "data": {
+    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "order_number": "#ORD-12345",
+    "fulfillment_status": "completed",
+    "payment_status": "completed",
+    "total": {
+      "amount": 102.49,
+      "formatted": "€102.49"
+    }
+  }
+}
+```
+
+### Payment Completed Event
+
+```json
+{
+  "id": "evt_1234567891",
+  "event": "payment.completed",
+  "timestamp": "2023-01-01T12:00:00+00:00",
+  "data": {
+    "order_id": "123e4567-e89b-12d3-a456-426614174000",
+    "amount": 102.49,
+    "currency": "EUR"
+  }
+}
+```
+
+## Webhook Security
+
+### Verifying Webhook Signatures
+
+Each webhook request includes an `X-Manastore-Signature` header containing an HMAC-SHA256 signature of the payload. Verify this signature to ensure the webhook is authentic:
+
+```javascript
+const crypto = require('crypto');
+const signature = req.headers['x-manastore-signature'];
+const payload = JSON.stringify(req.body);
+const secret = process.env.WEBHOOK_SECRET;
+
+const hash = crypto
+  .createHmac('sha256', secret)
+  .update(payload)
+  .digest('hex');
+
+if (hash === signature) {
+  // Webhook is authentic
+}
+```
+
+## Best Practices
+
+- **Return Quickly**: Process the webhook and return a 2xx response immediately
+- **Idempotency**: Handle duplicate events gracefully by storing event IDs
+- **Retry Logic**: Manastore retries failed webhooks up to 5 times with exponential backoff
+- **HTTPS Only**: Webhooks are only sent to HTTPS endpoints
+- **Timeout**: Your endpoint must respond within 30 seconds

@@ -1,4 +1,88 @@
 ---
-title: 'Delete Plant'
-openapi: 'DELETE /plants/{id}'
+title: 'Additional Resources'
 ---
+
+## Webhooks
+
+Webhooks allow you to receive real-time notifications about events that occur in the Manastore system. This enables you to build reactive applications that respond immediately to important changes.
+
+<OpenAPI method="post" path="/webhooks">
+  Configure webhooks for your application
+</OpenAPI>
+
+### Common Webhook Events
+
+- **order.created**: Triggered when a new order is placed
+- **order.completed**: Triggered when an order fulfillment is completed
+- **order.refunded**: Triggered when an order is refunded
+- **payment.completed**: Triggered when payment is successfully processed
+
+### Setting Up Webhooks
+
+To receive webhook notifications:
+
+1. Register a webhook endpoint URL with your application
+2. Manastore will send POST requests to your endpoint
+3. Verify the webhook signature for security
+4. Process the event and return a 2xx response
+
+### Example Webhook Payload
+
+```json
+{
+  "event": "order.completed",
+  "data": {
+    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "order_number": "#ORD-12345",
+    "fulfillment_status": "completed",
+    "payment_status": "completed"
+  },
+  "timestamp": "2023-01-01T12:00:00+00:00"
+}
+```
+
+---
+
+## Banking Details (Seller Only)
+
+### Store Banking Details
+
+Submit your banking information for withdrawal processing.
+
+**Endpoint**: `POST /banking-details`
+
+**Required Fields**:
+- bank_name
+- full_bank_address
+- account_beneficiary_name
+- currency
+- account_iban
+- bic_swift
+
+**Optional Fields**:
+- aba_wire_routing_no
+- ach_routing_no
+
+### Update Banking Details
+
+**Endpoint**: `PUT /banking-details/{id}`
+
+Update your existing banking information for withdrawal processing.
+
+---
+
+## API Limits
+
+- **Rate Limit**: 1000 requests per hour per API key
+- **Page Size**: Maximum 100 items per page
+- **Timeout**: 30 seconds per request
+
+## Error Handling
+
+The API uses standard HTTP status codes:
+
+- **2xx**: Success
+- **4xx**: Client errors (invalid request, authentication, etc.)
+- **5xx**: Server errors
+
+All error responses include a `message` field and optionally an `errors` object for validation failures.

@@ -1,4 +1,68 @@
 ---
-title: 'Create Plant'
-openapi: 'POST /plants'
+title: 'Create Resources'
 ---
+
+## Create Direct Purchase Order
+
+<OpenAPI method="post" path="/orders">
+  Create an order directly without going through the cart flow
+</OpenAPI>
+
+### Request Body
+
+The request should include:
+
+```json
+{
+  "wallet_id": "123e4567-e89b-12d3-a456-426614174002",
+  "items": [
+    {
+      "product_variant_id": 123,
+      "quantity": 1
+    }
+  ]
+}
+```
+
+### Parameters
+
+- **wallet_id** (required, string): ID of the wallet to use for payment
+- **items** (required, array): Array of items to purchase
+  - **product_variant_id** (required, integer): ID of the product variant
+  - **quantity** (required, integer): Quantity to purchase (minimum: 1)
+
+### Responses
+
+- **201 Created**: Order created successfully
+- **401 Unauthorized**: Missing or invalid authentication token
+- **403 Forbidden**: Access denied
+- **422 Unprocessable Entity**: Validation error or business rule violation (e.g., "Insufficient funds in wallet")
+- **500 Internal Server Error**: Server-side error
+
+### Example Response
+
+```json
+{
+  "message": "Order created successfully",
+  "data": {
+    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "order_number": "#ORD-12345",
+    "fulfillment_status": "pending",
+    "payment_status": "completed",
+    "subtotal": {
+      "amount": 99.99,
+      "formatted": "€99.99"
+    },
+    "conversion_fees": {
+      "amount": 2.5,
+      "formatted": "€2.50"
+    },
+    "total": {
+      "amount": 102.49,
+      "formatted": "€102.49"
+    },
+    "currency": "EUR",
+    "items": []
+  }
+}
+```

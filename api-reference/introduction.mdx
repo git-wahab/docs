@@ -1,33 +1,57 @@
 ---
 title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+description: 'Manastore API Documentation'
 ---
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
-</Note>
+## Welcome to Manastore API
 
-## Welcome
-
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+The Manastore API provides endpoints for managing orders, products, and wallets. Build powerful applications with our comprehensive REST API.
 
 <Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
+  title="OpenAPI Specification"
+  icon="code"
+  href="/api-reference/openapi.json"
 >
-  View the OpenAPI specification file
+  View the complete OpenAPI specification
 </Card>
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+All API endpoints are authenticated using **Bearer token** authentication. Follow these steps to authenticate:
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+1. **Login** to the app with your email and password to generate your access token
+2. **Include the token** in the Authorization header for all authenticated requests:
+
 ```
+Authorization: Bearer your-token-here
+```
+
+## Request Headers
+
+All requests must include the following header:
+
+```
+Accept: application/json
+```
+
+## API Base URL
+
+```
+https://api-staging.manastore.com/api/v1
+```
+
+## Response Format
+
+All successful responses return JSON data with the following structure:
+
+- **Paginated Responses**: Include `data`, `links`, and `meta` objects
+- **Error Responses**: Include `message` and optional `errors` object for validation errors
+- **Single Resources**: Return the resource object directly
+
+## Endpoints Overview
+
+The API is organized into three main categories:
+
+- **Orders**: Manage customer orders, download invoices and digital codes
+- **Products**: Browse products, search, and retrieve product details
+- **Wallets**: Manage user wallets and check balances

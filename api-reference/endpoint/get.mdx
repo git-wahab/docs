@@ -1,4 +1,187 @@
 ---
-title: 'Get Plants'
-openapi: 'GET /plants'
+title: 'Retrieve Resources'
 ---
+
+## List Orders
+
+<OpenAPI method="get" path="/orders">
+  Returns a paginated list of orders for the authenticated user with optional filtering
+</OpenAPI>
+
+### Query Parameters
+
+- **per_page** (integer, default: 15, max: 100): Number of items per page
+- **fulfillment_status** (string): Filter by fulfillment status
+  - Options: `pending`, `processing`, `completed`, `refunded`
+- **payment_status** (string): Filter by payment status
+  - Options: `pending`, `completed`
+
+### Responses
+
+- **200 OK**: Successful operation
+- **401 Unauthorized**: Missing or invalid authentication token
+- **403 Forbidden**: Access denied
+
+---
+
+## Get Order Details
+
+<OpenAPI method="get" path="/orders/{order}">
+  Returns detailed information about a specific order
+</OpenAPI>
+
+### Path Parameters
+
+- **order** (required, string/UUID): Order ID
+
+### Responses
+
+- **200 OK**: Successful operation
+- **401 Unauthorized**: Missing or invalid authentication token
+- **403 Forbidden**: Access denied
+- **404 Not Found**: Order not found
+
+---
+
+## Download Order Digital Codes
+
+<OpenAPI method="get" path="/orders/{order}/download-codes">
+  Downloads a ZIP file containing digital codes for the order
+</OpenAPI>
+
+### Path Parameters
+
+- **order** (required, string/UUID): Order ID
+
+### Responses
+
+- **200 OK**: ZIP file download
+- **401 Unauthorized**: Missing or invalid authentication token
+- **403 Forbidden**: Access denied
+- **404 Not Found**: Order not found or no codes available
+
+---
+
+## Get Order Digital Codes (JSON)
+
+<OpenAPI method="get" path="/orders/{order}/get-codes">
+  Returns digital codes for the order in JSON format
+</OpenAPI>
+
+### Path Parameters
+
+- **order** (required, string/UUID): Order ID
+
+### Response Format
+
+```json
+{
+  "error": false,
+  "message": "Codes retrieved successfully",
+  "data": [
+    {
+      "code": "XXXX-XXXX-XXXX-XXXX",
+      "product_name": "Product Name"
+    }
+  ]
+}
+```
+
+### Responses
+
+- **200 OK**: Successful operation
+- **401 Unauthorized**: Missing or invalid authentication token
+- **403 Forbidden**: Access denied
+- **404 Not Found**: Order not found or no codes available
+
+---
+
+## Download Order Invoice
+
+<OpenAPI method="get" path="/orders/{order}/download-invoice">
+  Downloads a PDF invoice for the order
+</OpenAPI>
+
+### Path Parameters
+
+- **order** (required, string/UUID): Order ID
+
+### Responses
+
+- **200 OK**: PDF file download
+- **401 Unauthorized**: Missing or invalid authentication token
+- **403 Forbidden**: Access denied
+- **404 Not Found**: Order not found
+
+---
+
+## List Products
+
+<OpenAPI method="get" path="/products">
+  Returns a paginated list of products with optional filtering
+</OpenAPI>
+
+### Query Parameters
+
+- **page** (integer, default: 1): Page number for pagination
+- **per_page** (integer, default: 15): Number of items per page
+- **search** (string): Search term to filter products
+- **category** (string): Category name to filter products
+
+### Responses
+
+- **200 OK**: Successful operation
+
+---
+
+## Search Products
+
+<OpenAPI method="get" path="/products/search">
+  Search products by term and return paginated results
+</OpenAPI>
+
+### Query Parameters
+
+- **term** (required, string): Search term to find products
+- **page** (integer, default: 1): Page number for pagination
+- **per_page** (integer, default: 15): Number of items per page
+
+### Responses
+
+- **200 OK**: Successful operation
+
+---
+
+## Get Product Details
+
+<OpenAPI method="get" path="/products/{product}">
+  Returns details for a single product
+</OpenAPI>
+
+### Path Parameters
+
+- **product** (required, integer): Product ID
+
+### Responses
+
+- **200 OK**: Successful operation
+- **404 Not Found**: Product not found
+
+---
+
+## List Wallets
+
+<OpenAPI method="get" path="/wallets">
+  Returns a paginated list of wallets belonging to the authenticated user
+</OpenAPI>
+
+### Query Parameters
+
+- **page** (integer, default: 1): Page number for pagination
+- **per_page** (integer, default: 15): Number of items per page
+
+### Responses
+
+- **200 OK**: Successful operation
+- **401 Unauthorized**: Missing or invalid authentication token
+- **403 Forbidden**: Access denied
