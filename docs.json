@@ -23,7 +23,6 @@
             "group": "Orders",
             "pages": [
               "api-reference/endpoint/orders/get_orders",
-              "api-reference/endpoint/orders/create_order",
               "api-reference/endpoint/orders/get_order",
               "api-reference/endpoint/orders/download_codes",
               "api-reference/endpoint/orders/get_codes",
