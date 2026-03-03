@@ -1,0 +1,55 @@
+---
+title: 'Get Order Codes'
+description: 'Returns digital codes for the order in JSON format'
+---
+
+## Get Order Digital Codes (JSON)
+
+`GET /api/v1/orders/{order}/get-codes`
+
+Returns digital codes for the order in JSON format.
+
+### Path Parameters
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `order` | string (UUID) | ✅ | The order ID |
+
+### Example Response
+
+```json
+{
+  "error": false,
+  "message": "Codes retrieved successfully",
+  "data": [
+    {
+      "code": "XXXX-XXXX-XXXX-XXXX",
+      "product_name": "Product Name"
+    }
+  ]
+}
+```
+
+### Responses
+
+| Status | Description |
+|---|---|
+| `200 OK` | Successful operation |
+| `401 Unauthorized` | Missing or invalid authentication token |
+| `403 Forbidden` | Access denied |
+| `404 Not Found` | Order not found or no codes available |
+
+### 200 — Digital Codes
+
+```json
+{
+  "error": false,
+  "message": "Codes retrieved successfully",
+  "data": [
+    {
+      "code": "XXXX-XXXX-XXXX-XXXX",
+      "product_name": "Product Name"
+    }
+  ]
+}
+```

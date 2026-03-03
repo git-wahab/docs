@@ -1,0 +1,65 @@
+---
+title: 'Webhooks'
+description: 'Real-time event notifications for your application'
+---
+
+## Webhooks Overview
+
+Webhooks allow your application to receive real-time notifications about important events occurring in Manastore. Instead of polling the API, webhooks push event data directly to your application's endpoint.
+
+## Webhook Events
+
+### Order Events
+
+- **order.fulfilled**: An order has been fulfilled and completed
+
+
+## Registering a Webhook
+
+To register a webhook:
+
+1. Provide a public HTTPS URL endpoint
+3. Manastore will immediately begin sending events to your endpoint
+
+## Webhook Payload Format
+
+All webhook events follow this standard format:
+
+```json
+{
+  "event": "order.completed",
+  "timestamp": "2023-01-01T12:00:00+00:00",
+  "data": {
+    // Event-specific data
+  }
+}
+```
+
+## Example Payloads
+
+### Order Fulfilled Event
+
+```json
+{
+  "id": "evt_1234567890",
+  "event": "order.fulfilled",
+  "timestamp": "2023-01-01T12:00:00+00:00",
+  "data": {
+    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "order_number": "#ORD-12345",
+    "fulfillment_status": "completed",
+    "payment_status": "completed",
+    "total": {
+      "amount": 102.49,
+      "formatted": "€102.49"
+    }
+  }
+}
+```
+
+## Best Practices
+
+- **Return Quickly**: Process the webhook and return a 2xx response immediately
+- **Retry Logic**: Manastore retries failed webhooks up to 3 times with exponential backoff
+- **HTTPS Only**: Webhooks are only sent to HTTPS endpoints
+- **Timeout**: Your endpoint must respond within 10 seconds

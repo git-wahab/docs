@@ -1,0 +1,63 @@
+---
+title: 'List Orders'
+description: 'Returns a paginated list of orders for the authenticated user with optional filtering'
+---
+
+## List Orders
+
+`GET /api/v1/orders`
+
+Returns a paginated list of orders for the authenticated user with optional filtering.
+
+### Query Parameters
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `per_page` | integer | 15 | Number of items per page (max: 100) |
+| `fulfillment_status` | string | — | Filter by fulfillment status: `pending`, `processing`, `completed`, `refunded` |
+| `payment_status` | string | — | Filter by payment status: `pending`, `completed` |
+
+### Responses
+
+| Status | Description |
+|---|---|
+| `200 OK` | Successful operation |
+| `401 Unauthorized` | Missing or invalid authentication token |
+| `403 Forbidden` | Access denied |
+
+### Example Response
+
+```json
+{
+  "data": [
+    {
+      "id": "123e4567-e89b-12d3-a456-426614174000",
+      "order_number": "#ORD-12345",
+      "fulfillment_status": "completed",
+      "payment_status": "completed",
+      "subtotal": { "amount": 99.99, "formatted": "€99.99" },
+      "conversion_fees": { "amount": 2.5, "formatted": "€2.50" },
+      "total": { "amount": 102.49, "formatted": "€102.49" },
+      "currency": "EUR",
+      "items": [],
+      "created_at": "2023-01-01T12:00:00+00:00",
+      "updated_at": "2023-01-01T12:00:00+00:00"
+    }
+  ],
+  "links": {
+    "first": "https://api.example.com/orders?page=1",
+    "last": "https://api.example.com/orders?page=5",
+    "prev": null,
+    "next": "https://api.example.com/orders?page=2"
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 5,
+    "path": "https://api.example.com/orders",
+    "per_page": 15,
+    "to": 15,
+    "total": 75
+  }
+}
+```

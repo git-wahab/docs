@@ -1,0 +1,36 @@
+---
+title: 'API Limits & Errors'
+description: 'Rate limits, page sizes, and error handling for the API'
+---
+
+## API Limits
+
+| Limit | Value |
+|---|---|
+| Rate Limit | 1000 requests per hour per API key |
+| Page Size | Maximum 100 items per page |
+| Timeout | 30 seconds per request |
+
+## Error Handling
+
+The API uses standard HTTP status codes:
+
+| Range | Meaning |
+|---|---|
+| `2xx` | Success |
+| `4xx` | Client errors (invalid request, authentication, etc.) |
+| `5xx` | Server errors |
+
+All error responses include a `message` field and optionally an `errors` object for validation failures.
+
+### Example Error Response
+
+```json
+{
+  "message": "The given data was invalid.",
+  "errors": {
+    "wallet_id": ["The wallet id field is required."],
+    "items": ["The items field is required."]
+  }
+}
+```

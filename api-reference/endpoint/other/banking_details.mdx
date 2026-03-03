@@ -1,0 +1,42 @@
+---
+title: 'Banking Details'
+description: 'Manage seller banking details for withdrawal processing'
+---
+
+## Store Banking Details
+
+`POST /banking-details`
+
+Submit your banking information for withdrawal processing.
+
+### Required Fields
+
+| Field | Description |
+|---|---|
+| `bank_name` | Name of the bank |
+| `full_bank_address` | Full address of the bank |
+| `account_beneficiary_name` | Name of the account beneficiary |
+| `currency` | Account currency |
+| `account_iban` | IBAN number |
+| `bic_swift` | BIC/SWIFT code |
+
+### Optional Fields
+
+| Field | Description |
+|---|---|
+| `aba_wire_routing_no` | ABA wire routing number |
+| `ach_routing_no` | ACH routing number |
+
+---
+
+## Update Banking Details
+
+`PUT /banking-details/{id}`
+
+Update your existing banking information for withdrawal processing.
+
+### Path Parameters
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `id` | integer | ✅ | The banking details record ID |

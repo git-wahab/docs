@@ -1,0 +1,25 @@
+---
+title: 'Download Invoice'
+description: 'Downloads a PDF invoice for the order'
+---
+
+## Download Order Invoice
+
+`GET /api/v1/orders/{order}/download-invoice`
+
+Downloads a PDF invoice for the order.
+
+### Path Parameters
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `order` | string (UUID) | ✅ | The order ID |
+
+### Responses
+
+| Status | Description |
+|---|---|
+| `200 OK` | Returns a PDF file (`application/pdf`) of the order invoice |
+| `401 Unauthorized` | Missing or invalid authentication token |
+| `403 Forbidden` | Access denied |
+| `404 Not Found` | Order not found |

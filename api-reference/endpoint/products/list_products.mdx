@@ -1,0 +1,75 @@
+---
+title: 'List Products'
+description: 'Returns a paginated list of products with optional filtering'
+---
+
+## List Products
+
+`GET /api/v1/products`
+
+Returns a paginated list of products with optional filtering.
+
+### Query Parameters
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `page` | integer | 1 | Page number for pagination |
+| `per_page` | integer | 15 | Number of items per page |
+| `search` | string | — | Search term to filter products |
+| `category` | string | — | Category name to filter products |
+
+### Responses
+
+| Status | Description |
+|---|---|
+| `200 OK` | Successful operation |
+
+### 200 — Product List
+
+```json
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "Product Name",
+      "url": "https://example.com/product",
+      "category_name": "Games",
+      "brand_name": "Steam",
+      "brand_id": "BRAND123",
+      "region": "Global",
+      "description": "Product description",
+      "short_description": "Short description",
+      "notes": null,
+      "images": ["image1.jpg", "image2.jpg"],
+      "variant": {
+        "id": 1,
+        "name": "Standard Edition",
+        "price": {
+          "amount": "59.99",
+          "currency": "USD",
+          "formatted": "$59.99",
+          "decimal": "59.99",
+          "localized_decimal": "59,99"
+        },
+        "stock_amount": 100
+      },
+      "created_at": "2023-01-01T12:00:00+00:00",
+      "updated_at": "2023-01-01T12:00:00+00:00"
+    }
+  ],
+  "links": {
+    "first": "http://example.com/api/resources?page=1",
+    "last": "http://example.com/api/resources?page=1",
+    "prev": null,
+    "next": null
+  },
+  "meta": {
+    "current_page": 1,
+    "from": 1,
+    "last_page": 1,
+    "per_page": 15,
+    "to": 15,
+    "total": 15
+  }
+}
+```
