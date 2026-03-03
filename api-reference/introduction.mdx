@@ -19,10 +19,7 @@ The Manastore API provides endpoints for managing orders, products, and wallets.
 
 ## Authentication
 
-All API endpoints are authenticated using **Bearer token** authentication. Follow these steps to authenticate:
-
-1. **Login** to the app with your email and password to generate your access token
-2. **Include the token** in the Authorization header for all authenticated requests:
+All API endpoints require a **Bearer token**, which must be included in the `Authorization` header of every request:
 
 ```
 Authorization: Bearer your-token-here

@@ -14,7 +14,7 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Overview",
             "pages": [
               "api-reference/introduction"
             ]
@@ -22,34 +22,45 @@
           {
             "group": "Orders",
             "pages": [
-              "api-reference/endpoint/orders"
+              "api-reference/endpoint/orders/get_orders",
+              "api-reference/endpoint/orders/create_order",
+              "api-reference/endpoint/orders/get_order",
+              "api-reference/endpoint/orders/download_codes",
+              "api-reference/endpoint/orders/get_codes",
+              "api-reference/endpoint/orders/download_invoice"
             ]
           },
           {
             "group": "Products",
             "pages": [
-              "api-reference/endpoint/products"
+              "api-reference/endpoint/products/list_products",
+              "api-reference/endpoint/products/search_products",
+              "api-reference/endpoint/products/get_product"
             ]
           },
           {
             "group": "Wallets",
             "pages": [
-              "api-reference/endpoint/wallets"
+              "api-reference/endpoint/wallets/list_wallets"
+            ]
+          },
+          {
+            "group": "Webhooks",
+            "pages": [
+              "api-reference/endpoint/webhooks/webhooks_overview"
             ]
           }
         ]
       }
     ],
-    "global": {
-
-    }
+    "global": {}
   },
   "logo": {
     "light": "/logo/light.svg",
     "dark": "/logo/dark.svg"
   },
   "navbar": {
-    "links": [  
+    "links": [
       {
         "label": "Support",
         "href": "mailto:hi@mintlify.com"
@@ -63,15 +74,15 @@
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {

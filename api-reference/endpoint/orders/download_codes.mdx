@@ -1,0 +1,25 @@
+---
+title: 'Download Order Codes'
+description: 'Downloads a ZIP file containing digital codes for the order'
+---
+
+## Download Order Digital Codes
+
+`GET /api/v1/orders/{order}/download-codes`
+
+Downloads a ZIP file containing digital codes for the order.
+
+### Path Parameters
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `order` | string (UUID) | ✅ | The order ID |
+
+### Responses
+
+| Status | Description |
+|---|---|
+| `200 OK` | Returns a ZIP file (`application/zip`) containing the digital codes |
+| `401 Unauthorized` | Missing or invalid authentication token |
+| `403 Forbidden` | Access denied |
+| `404 Not Found` | Order not found or no codes available |

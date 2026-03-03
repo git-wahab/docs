@@ -1,0 +1,54 @@
+---
+title: 'Get Order'
+description: 'Returns detailed information about a specific order'
+---
+
+## Get Order Details
+
+`GET /api/v1/orders/{order}`
+
+Returns detailed information about a specific order.
+
+### Path Parameters
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `order` | string (UUID) | ✅ | The order ID |
+
+### Responses
+
+| Status | Description |
+|---|---|
+| `200 OK` | Successful operation |
+| `401 Unauthorized` | Missing or invalid authentication token |
+| `403 Forbidden` | Access denied |
+| `404 Not Found` | Order not found |
+
+### 200 — Order Details
+
+```json
+{
+  "id": "123e4567-e89b-12d3-a456-426614174000",
+  "order_number": "#ORD-12345",
+  "fulfillment_status": "completed",
+  "payment_status": "completed",
+  "subtotal": { "amount": 99.99, "formatted": "€99.99" },
+  "conversion_fees": { "amount": 2.5, "formatted": "€2.50" },
+  "total": { "amount": 102.49, "formatted": "€102.49" },
+  "currency": "EUR",
+  "items": [
+    {
+      "id": "123e4567-e89b-12d3-a456-426614174001",
+      "product_name": "Digital Game Key",
+      "variant_name": "Standard Edition",
+      "quantity": 1,
+      "unit_price": { "amount": 59.99, "formatted": "€59.99" },
+      "total_price": { "amount": 59.99, "formatted": "€59.99" },
+      "created_at": "2023-01-01T12:00:00+00:00",
+      "updated_at": "2023-01-01T12:00:00+00:00"
+    }
+  ],
+  "created_at": "2023-01-01T12:00:00+00:00",
+  "updated_at": "2023-01-01T12:00:00+00:00"
+}
+```
