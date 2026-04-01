@@ -1,97 +1,56 @@
 ---
-title: "Introduction"
-description: "Welcome to the new home for your documentation"
+title: 'Introduction'
+description: 'Manastore API Documentation'
 ---
 
-## Setting up
+> **⚠️ Staging Environment**: This documentation covers the Manastore API staging environment. For production API documentation, please refer to the production documentation.
 
-Get your documentation site up and running in minutes.
+## Welcome to Manastore API
 
-<Card
-  title="Start here"
-  icon="rocket"
-  href="/quickstart"
-  horizontal
->
-  Follow our three step quickstart guide.
-</Card>
-
-## Make it yours
-
-Design a docs site that looks great and empowers your users.
-
-<Columns cols={2}>
-  <Card
-    title="Edit locally"
-    icon="pen-to-square"
-    href="/development"
-  >
-    Edit your docs locally and preview them in real time.
-  </Card>
-  <Card
-    title="Customize your site"
-    icon="palette"
-    href="/essentials/settings"
-  >
-    Customize the design and colors of your site to match your brand.
-  </Card>
-    <Card
-    title="Set up navigation"
-    icon="map"
-    href="/essentials/navigation"
-  >
-    Organize your docs to help users find what they need and succeed with your product.
-  </Card>
-  <Card
-    title="API documentation"
-    icon="terminal"
-    href="/api-reference/introduction"
-  >
-    Auto-generate API documentation from OpenAPI specifications.
-  </Card>
-</Columns>
-
-## Create beautiful pages
-
-Everything you need to create world-class documentation.
-
-<Columns cols={2}>
-  <Card
-    title="Write with MDX"
-    icon="pen-fancy"
-    href="/essentials/markdown"
-  >
-    Use MDX to style your docs pages.
-  </Card>
-  <Card
-    title="Code samples"
-    icon="code"
-    href="/essentials/code"
-  >
-    Add sample code to demonstrate how to use your product.
-  </Card>
-  <Card
-    title="Images"
-    icon="image"
-    href="/essentials/images"
-  >
-    Display images and other media.
-  </Card>
-  <Card
-    title="Reusable snippets"
-    icon="recycle"
-    href="/essentials/reusable-snippets"
-  >
-    Write once and reuse across your docs.
-  </Card>
-</Columns>
-
-## Need inspiration?
+The Manastore API provides endpoints for managing orders, products, and wallets. Build powerful applications with our comprehensive REST API.
 
 <Card
-  title="See complete examples"
-  icon="stars"
-  href="https://mintlify.com/customers"
+  title="OpenAPI Specification"
+  icon="code"
+  href="https://github.com/git-wahab/docs/blob/manastore-open-api/api-reference/openapi.json"
 >
-  Browse our showcase of exceptional documentation sites.
+  View the complete OpenAPI specification
 </Card>
+
+## Authentication
+
+All API endpoints require a **Bearer token**, which must be included in the `Authorization` header of every request:
+
+```
+Authorization: Bearer your-token-here
+```
+
+## Request Headers
+
+All requests must include the following header:
+
+```
+Accept: application/json
+```
+
+## API Base URL
+
+```
+https://api-staging.manastore.com/api/v1
+```
+
+## Response Format
+
+All successful responses return JSON data with the following structure:
+
+- **Paginated Responses**: Include `data`, `links`, and `meta` objects
+- **Error Responses**: Include `message` and optional `errors` object for validation errors
+- **Single Resources**: Return the resource object directly
+
+## Endpoints Overview
+
+The API is organized into three main categories:
+
+- **Orders**: Manage customer orders, download invoices and digital codes
+- **Products**: Browse products, search, and retrieve product details
+- **Wallets**: Manage user wallets and check balances
