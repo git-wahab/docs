@@ -3,8 +3,6 @@ title: 'Introduction'
 description: 'Manastore API Documentation'
 ---
 
-> **⚠️ Staging Environment**: This documentation covers the Manastore API staging environment. For production API documentation, please refer to the production documentation.
-
 ## Welcome to Manastore API
 
 The Manastore API provides endpoints for managing orders, products, and wallets. Build powerful applications with our comprehensive REST API.
@@ -29,7 +27,7 @@ Authorization: Bearer your-token-here
 
 <Steps>
   <Step title="Login to Manastore">
-    Login to your [Manastore account](https://staging.manastore.com/).
+    Login to your [Manastore account](https://manastore.com/).
   </Step>
   <Step title="Navigate to API Key Settings">
     Go to **Account Settings** → **API Key**.
@@ -49,9 +47,18 @@ Accept: application/json
 
 ## API Base URL
 
-```
-https://api-staging.manastore.com/api/v1
-```
+<Tabs>
+  <Tab title="Staging">
+    ```
+    https://api-staging.manastore.com/api/v1
+    ```
+  </Tab>
+  <Tab title="Live">
+    ```
+    https://api.manastore.com/api/v1
+    ```
+  </Tab>
+</Tabs>
 
 ## Response Format
 
