@@ -1,0 +1,95 @@
+---
+title: 'Create Order'
+description: 'Creates an order directly without going through the cart flow'
+---
+
+## Create a Direct Purchase Order
+
+`POST /api/v1/orders`
+
+Creates an order directly without going through the cart flow. This endpoint validates the items, processes payment from the specified wallet, and returns the created order.
+
+### Authentication
+
+Requires a Bearer token in the `Authorization` header.
+
+### Request Body
+
+| Field | Type | Required | Description |
+|---|---|---|---|
+| `wallet_id` | string (UUID) | ✅ | The ID of the wallet to use for payment |
+| `items` | array | ✅ | Array of items to purchase |
+| `items[].product_variant_id` | integer | ✅ | ID of the product variant |
+| `items[].quantity` | integer | ✅ | Quantity to purchase (minimum: 1) |
+
+### Example Request
+
+```json
+{
+  "wallet_id": "123e4567-e89b-12d3-a456-426614174002",
+  "items": [
+    {
+      "product_variant_id": 123,
+      "quantity": 1
+    }
+  ]
+}
+```
+
+### Responses
+
+| Status | Description |
+|---|---|
+| `201 Created` | Order created successfully |
+| `401 Unauthorized` | Missing or invalid authentication token |
+| `403 Forbidden` | Access denied |
+| `422 Unprocessable Entity` | Validation error or business rule violation (e.g. insufficient wallet funds) |
+| `500 Internal Server Error` | Unexpected server error |
+
+### 201 — Order Created
+
+```json
+{
+  "message": "Order created successfully",
+  "data": {
+    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "order_number": "#ORD-12345",
+    "fulfillment_status": "pending",
+    "payment_status": "completed",
+    "subtotal": { "amount": 99.99, "formatted": "€99.99" },
+    "conversion_fees": { "amount": 2.5, "formatted": "€2.50" },
+    "total": { "amount": 102.49, "formatted": "€102.49" },
+    "currency": "EUR",
+    "items": [
+      {
+        "id": "123e4567-e89b-12d3-a456-426614174001",
+        "product_name": "Digital Game Key",
+        "variant_name": "Standard Edition",
+        "quantity": 1,
+        "unit_price": { "amount": 99.99, "formatted": "€99.99" },
+        "total_price": { "amount": 99.99, "formatted": "€99.99" },
+        "created_at": "2023-01-01T12:00:00+00:00",
+        "updated_at": "2023-01-01T12:00:00+00:00"
+      }
+    ],
+    "created_at": "2023-01-01T12:00:00+00:00",
+    "updated_at": "2023-01-01T12:00:00+00:00"
+  }
+}
+```
+
+### 422 — Validation / Business Rule Error
+
+```json
+{
+  "message": "Insufficient funds in wallet"
+}
+```
+
+### 500 — Server Error
+
+```json
+{
+  "message": "An unexpected error occurred while processing your order."
+}
+```
