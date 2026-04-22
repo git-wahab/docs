@@ -13,7 +13,7 @@ Returns detailed information about a specific order.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `order` | string (UUID) | ✅ | The order ID |
+| `order` | string (ULID) | ✅ | The `ulid` in order |
 
 ### Responses
 
@@ -28,7 +28,8 @@ Returns detailed information about a specific order.
 
 ```json
 {
-  "id": "123e4567-e89b-12d3-a456-426614174000",
+  "id": 12345,
+  "ulid": "01J9Z3NDEKTSV4RRFFQ69G5FAV",
   "order_number": "#ORD-12345",
   "fulfillment_status": "completed",
   "payment_status": "completed",
@@ -38,7 +39,7 @@ Returns detailed information about a specific order.
   "currency": "EUR",
   "items": [
     {
-      "id": "123e4567-e89b-12d3-a456-426614174001",
+      "id": 67890,
       "product_name": "Digital Game Key",
       "variant_name": "Standard Edition",
       "quantity": 1,

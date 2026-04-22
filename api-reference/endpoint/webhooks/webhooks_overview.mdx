@@ -18,8 +18,9 @@ Webhooks allow your application to receive real-time notifications about importa
 
 To register a webhook:
 
-1. Provide a public HTTPS URL endpoint
-3. Manastore will immediately begin sending events to your endpoint
+1. Log in to your Manastore account and navigate to **Account Settings** → **Webhook**
+2. Enter your public HTTPS URL endpoint in the webhook URL field
+3. Save your settings — Manastore will immediately begin sending events to your endpoint
 
 ## Webhook Payload Format
 
@@ -45,7 +46,8 @@ All webhook events follow this standard format:
   "event": "order.fulfilled",
   "timestamp": "2023-01-01T12:00:00+00:00",
   "data": {
-    "id": "123e4567-e89b-12d3-a456-426614174000",
+    "id": 12345,
+    "ulid": "01J9Z3NDEKTSV4RRFFQ69G5FAV",
     "order_number": "#ORD-12345",
     "fulfillment_status": "completed",
     "payment_status": "completed",
