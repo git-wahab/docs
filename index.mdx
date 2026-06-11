@@ -68,6 +68,10 @@ All successful responses return JSON data with the following structure:
 - **Error Responses**: Include `message` and optional `errors` object for validation errors
 - **Single Resources**: Return the resource object directly
 
+## Currency Conversion
+
+Conversion fees applied to orders in a currency different from the base currency are calculated using live exchange rates from [ExchangeRate-API](https://www.exchangerate-api.com).
+
 ## Endpoints Overview
 
 The API is organized into three main categories:
