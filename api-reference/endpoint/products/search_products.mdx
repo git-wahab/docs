@@ -32,24 +32,35 @@ Search products by term and return paginated results.
       "id": 1,
       "name": "Product Name",
       "url": "https://example.com/product",
-      "category_name": "Games",
-      "brand_name": "Steam",
-      "brand_id": "BRAND123",
-      "region": "Global",
       "description": "Product description",
       "short_description": "Short description",
       "notes": null,
+      "category_name": "Games",
+      "brand_name": "Steam",
+      "brand_id": "BRAND123",
       "images": ["image1.jpg"],
+      "region": "Global",
+      "channel": "API",
+      "tags": ["tag1", "tag2"],
+      "isPermanentOutOfStock": false,
+      "discount_percentage": 50,
       "variant": {
         "id": 1,
         "name": "Standard Edition",
         "price": {
-          "amount": "59.99",
+          "amount": "5999",
           "currency": "USD",
           "formatted": "$59.99",
           "decimal": "59.99",
-          "localized_decimal": "59,99"
+          "localized_decimal": "59.99"
         },
+        "face_value": {
+          "amount": "6999",
+          "currency": "USD",
+          "formatted": "$69.99",
+          "decimal": "69.99",
+          "localized_decimal": "69.99"
+        }
       },
       "created_at": "2023-01-01T12:00:00+00:00",
       "updated_at": "2023-01-01T12:00:00+00:00"
