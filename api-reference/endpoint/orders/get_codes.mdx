@@ -24,6 +24,7 @@ Returns digital codes for the order in JSON format.
   "data": [
     {
       "product_name": "Product Name",
+      "status": "completed",
       "codes": [
         {
           "code": "XXXX-XXXX-XXXX-XXXX",
@@ -36,6 +37,8 @@ Returns digital codes for the order in JSON format.
   ]
 }
 ```
+
+Each product includes a `status` field indicating its fulfillment state: `completed` or `pending`.
 
 ### Responses
 
@@ -55,6 +58,7 @@ Returns digital codes for the order in JSON format.
   "data": [
     {
       "product_name": "Product Name",
+      "status": "completed",
       "codes": [
         {
           "code": "XXXX-XXXX-XXXX-XXXX",
