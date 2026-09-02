@@ -13,7 +13,7 @@ Search products by term and return paginated results.
 
 | Parameter | Type | Required | Default | Description |
 |---|---|---|---|---|
-| `term` | string | ✅ | — | Search term to find products |
+| `term` | string | ✅ | — | Search term to find products (minimum 2 characters) |
 | `page` | integer | — | 1 | Page number for pagination |
 | `per_page` | integer | — | 15 | Number of items per page |
 
@@ -22,6 +22,9 @@ Search products by term and return paginated results.
 | Status | Description |
 |---|---|
 | `200 OK` | Successful operation |
+| `401 Unauthorized` | Missing or invalid authentication token |
+| `403 Forbidden` | Access denied |
+| `422 Unprocessable Entity` | Validation error (e.g. missing or too-short term) |
 
 ### 200 — Search Results
 
@@ -42,6 +45,7 @@ Search products by term and return paginated results.
       "region": "Global",
       "channel": "API",
       "tags": ["tag1", "tag2"],
+      "status": "active",
       "isPermanentOutOfStock": false,
       "discount_percentage": 50,
       "variant": {

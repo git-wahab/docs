@@ -18,6 +18,7 @@ Requires a Bearer token in the `Authorization` header.
 | Field | Type | Required | Description |
 |---|---|---|---|
 | `wallet_id` | string (UUID) | ✅ | The ID of the wallet to use for payment |
+| `client_reference` | string | — | Optional idempotency key supplied by the caller, unique per user |
 | `items` | array | ✅ | Array of items to purchase |
 | `items[].product_variant_id` | integer | ✅ | ID of the product variant |
 | `items[].quantity` | integer | ✅ | Quantity to purchase (minimum: 1) |
@@ -27,6 +28,7 @@ Requires a Bearer token in the `Authorization` header.
 ```json
 {
   "wallet_id": "123e4567-e89b-12d3-a456-426614174002",
+  "client_reference": "order-2024-000123",
   "items": [
     {
       "product_variant_id": 123,
@@ -61,6 +63,7 @@ Requires a Bearer token in the `Authorization` header.
     "conversion_fees": { "amount": 2.5, "formatted": "€2.50" },
     "total": { "amount": 102.49, "formatted": "€102.49" },
     "currency": "EUR",
+    "client_reference": "order-2024-000123",
     "items": [
       {
         "id": 67890,
@@ -83,7 +86,7 @@ Requires a Bearer token in the `Authorization` header.
 
 ```json
 {
-  "message": "Insufficient funds in wallet"
+  "message": "Insufficient balance"
 }
 ```
 

@@ -14,8 +14,8 @@ Returns a paginated list of orders for the authenticated user with optional filt
 | Parameter | Type | Default | Description |
 |---|---|---|---|
 | `per_page` | integer | 15 | Number of items per page (max: 100) |
-| `fulfillment_status` | string | — | Filter by fulfillment status: `pending`, `processing`, `partially_fulfilled`, `completed`, `refunded` |
-| `payment_status` | string | — | Filter by payment status: `pending`, `completed` |
+| `fulfillment_status` | string | — | Filter by fulfillment status: `pending`, `processing`, `partially_fulfilled`, `completed`, `refunded`, `cancelled` |
+| `payment_status` | string | — | Filter by payment status: `pending`, `completed`, `cancelled` |
 
 ### Responses
 
@@ -40,6 +40,7 @@ Returns a paginated list of orders for the authenticated user with optional filt
       "conversion_fees": { "amount": 2.5, "formatted": "€2.50" },
       "total": { "amount": 102.49, "formatted": "€102.49" },
       "currency": "EUR",
+      "client_reference": "order-2024-000123",
       "items": [],
       "created_at": "2023-01-01T12:00:00+00:00",
       "updated_at": "2023-01-01T12:00:00+00:00"

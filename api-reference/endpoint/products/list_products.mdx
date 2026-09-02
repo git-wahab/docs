@@ -14,15 +14,16 @@ Returns a paginated list of products with optional filtering.
 | Parameter | Type | Default | Description |
 |---|---|---|---|
 | `page` | integer | 1 | Page number for pagination |
-| `per_page` | integer | 15 | Number of items per page |
-| `search` | string | — | Search term to filter products |
-| `category` | string | — | Category name to filter products |
+| `per_page` | integer | 15 | Number of items per page (max: 100) |
 
 ### Responses
 
 | Status | Description |
 |---|---|
 | `200 OK` | Successful operation |
+| `401 Unauthorized` | Missing or invalid authentication token |
+| `403 Forbidden` | Access denied |
+| `422 Unprocessable Entity` | Validation error |
 
 ### 200 — Product List
 
@@ -43,6 +44,7 @@ Returns a paginated list of products with optional filtering.
       "region": "Global",
       "channel": "API",
       "tags": ["tag1", "tag2"],
+      "status": "active",
       "isPermanentOutOfStock": false,
       "discount_percentage": 50,
       "variant": {
@@ -80,6 +82,7 @@ Returns a paginated list of products with optional filtering.
       "region": "Global",
       "channel": "Non API",
       "tags": [],
+      "status": "active",
       "isPermanentOutOfStock": false,
       "discount_percentage": 0,
       "variant": {
